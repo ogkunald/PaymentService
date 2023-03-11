@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.nastyzera.paymentservice.PaymentServiceApplication;
 import com.nastyzera.paymentservice.model.PaymentRequest;
 import com.nastyzera.paymentservice.model.PaymentResponse;
 import com.nastyzera.paymentservice.service.PaymentService;
