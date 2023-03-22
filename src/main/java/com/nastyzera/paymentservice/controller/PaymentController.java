@@ -3,6 +3,7 @@ package com.nastyzera.paymentservice.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
-
+    @PreAuthorize("hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
     @PostMapping
     public ResponseEntity<Long> doPayment(@RequestBody PaymentRequest paymentRequest) {
         return new ResponseEntity<>(
@@ -28,6 +29,7 @@ public class PaymentController {
         );
     }
 
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
     @GetMapping("/order/{orderId}")
     public ResponseEntity<PaymentResponse> getPaymentDetailsByOrderId(@PathVariable String orderId) {
         return new ResponseEntity<>(
